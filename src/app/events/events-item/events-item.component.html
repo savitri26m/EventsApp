@@ -1,0 +1,24 @@
+<a class="card" [routerLink]="['/events', eventItem.id]">
+    <div class="card-body">
+        <div class="card-title">
+            <h1>{{eventItem.name}}</h1>
+        </div>
+        <div class="card-body">
+            <div class="card-text"> Date: {{eventItem.date}} </div>
+            <div class="card-text" [ngClass]="getStartTimeClass()"  [ngSwitch]="eventItem?.time"> Time: {{eventItem.time}}
+                <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
+                <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
+                <span *ngSwitchDefault >(Normal Start)</span>    
+            </div>
+            <div class="card-text"> Price: {{eventItem.price}} </div>
+            <div class="card-text"> Location: {{eventItem.location.address}} 
+                <span>&nbsp;</span> <span>{{eventItem.location.city}}, {{eventItem.location.country}}</span>    
+            </div>
+        </div>
+    </div>
+</a>
+
+
+
+
+<!-- [ngClass]="{green: eventItem?.time === '8:00 am'}" -->
