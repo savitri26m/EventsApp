@@ -335,4 +335,10 @@ export class EventsListService {
   getEvent(id: number): IEvent {
     return this.eventsList.find(e => e.id === id)
   }
+
+  saveEventData(eventData){
+    eventData.id = 999
+    eventData.sessions= []
+    this.eventsList.push(eventData)
+  }
 }
