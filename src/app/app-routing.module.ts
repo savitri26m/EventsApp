@@ -6,6 +6,7 @@ import { CreateEventComponent } from './events/create-event/create-event.compone
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { EventRouteActivateService } from './shared/event-route-activate.service';
 import { EventListResolverService } from './shared/event-list-resolver.service';
+import { CreateSessionComponent } from './events/create-session/create-session.component';
 
 
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'events', component: EventsListComponent, resolve: {events: EventListResolverService}},
   {path: 'events/:id', component: EventDetailsComponent, canActivate: [EventRouteActivateService]},
   {path: '', redirectTo: '/events', pathMatch: 'full'},
+  {path: 'events/sessions/new', component: CreateSessionComponent},
 
   // lazy loading User module (profile component)
   {path: 'user', loadChildren: ()=> import('./user/user/user.module').then(mod => mod.UserModule)},
