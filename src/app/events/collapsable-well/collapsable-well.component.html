@@ -1,0 +1,4 @@
+<div (click)="toggleSession()" class="card-body">
+    <h4>{{sessionTitle}}</h4>
+    <ng-content *ngIf="visible"></ng-content>
+</div>

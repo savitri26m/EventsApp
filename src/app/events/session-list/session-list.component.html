@@ -1,13 +1,14 @@
 <div class="row" style="margin-bottom: 15px;" *ngFor="let session of sessions">
     <div class="col-md-10">
         <div class="card bg-light">
-            <div class="card-body">
-                <h4>{{session.name}}</h4>
-                <h6>{{session.presenter}}</h6>
-                <span>Duration: {{session.duration}}</span><br />
-                <span>Level: {{session.level}}</span>
-                <p>{{session.abstract}}</p>
-            </div>
+
+                <app-collapsable-well [sessionTitle]="session.name" >
+                    <h6>{{session.presenter}}</h6>
+                    <span>Duration: {{session.duration}}</span><br />
+                    <span>Level: {{session.level}}</span>
+                    <p>{{session.abstract}}</p>
+                </app-collapsable-well>
+
         </div>
     </div>
 </div>

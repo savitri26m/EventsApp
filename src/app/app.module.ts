@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateSessionComponent } from './events/create-session/create-session.component';
 import { SessionListComponent } from './events/session-list/session-list.component';
+import { CollapsableWellComponent } from './events/collapsable-well/collapsable-well.component';
 // import { LoginComponent } from './user/login/login.component';
 // import { ProfileComponent } from './user/profile/profile.component';
 
@@ -26,6 +27,7 @@ import { SessionListComponent } from './events/session-list/session-list.compone
     PageNotFoundComponent,
     CreateSessionComponent,
     SessionListComponent,
+    CollapsableWellComponent,
     // LoginComponent,
     // ProfileComponent
   ],
