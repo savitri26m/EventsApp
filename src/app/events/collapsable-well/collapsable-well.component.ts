@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-collapsable-well',
@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CollapsableWellComponent implements OnInit {
 
-  @Input() sessionTitle: string;
+  // @Input() sessionTitle: string;
   visible: boolean = false;
  
   constructor() { }

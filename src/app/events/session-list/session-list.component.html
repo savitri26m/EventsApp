@@ -1,14 +1,27 @@
-<div class="row" style="margin-bottom: 15px;" *ngFor="let session of sessions">
+<div class="row" style="margin-bottom: 15px; cursor: pointer;" *ngFor="let session of sessions">
     <div class="col-md-10">
         <div class="card bg-light">
-
-                <app-collapsable-well [sessionTitle]="session.name" >
+            <app-collapsable-well>
+                <div class="sessionTitle" >
+                    {{session.name}}
+                    <span *ngIf="session.voters.length > 3" style="color: red;" >(Recommended)</span>
+                </div>
+                <div class="sessionBody">
                     <h6>{{session.presenter}}</h6>
                     <span>Duration: {{session.duration}}</span><br />
                     <span>Level: {{session.level}}</span>
                     <p>{{session.abstract}}</p>
-                </app-collapsable-well>
-
+                </div>
+            </app-collapsable-well>
         </div>
     </div>
 </div>
+
+
+
+<!-- passing as attribute selector-->
+
+<!-- <div sessionTitle >
+    {{session.name}}
+    <span *ngIf="session.voters.length > 3" style="color: red;" >(Recommended)</span>
+</div> -->

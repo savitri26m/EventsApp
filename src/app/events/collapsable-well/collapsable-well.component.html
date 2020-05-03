@@ -1,4 +1,15 @@
 <div (click)="toggleSession()" class="card-body">
-    <h4>{{sessionTitle}}</h4>
-    <ng-content *ngIf="visible"></ng-content>
+    <h4>
+        <ng-content select=".sessionTitle"></ng-content>
+    </h4>
+    <ng-content *ngIf="visible" select=".sessionBody"></ng-content>
 </div>
+
+
+<!-- using multiple ng-content tags, select uses CSS class/id/ attribute selector to mark the element on ng-content -->
+<!-- we have used class selector for demo purposes -->
+
+<!--  using attribute selector for reference
+    <h4>
+    <ng-content select="[sessionTitle]"></ng-content>
+</h4> -->
