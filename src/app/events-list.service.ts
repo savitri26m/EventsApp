@@ -39,7 +39,7 @@ export class EventsListService {
           id: 2,
           name: "Getting the most out of your dev team",
           presenter: "Jeff Cross",
-          duration: 1,
+          duration: 3,
           level: "Intermediate",
           abstract: `We all know that our dev teams work hard, but with 
           the right management they can be even more productive, without 
@@ -51,7 +51,7 @@ export class EventsListService {
           id: 3,
           name: "Angular 4 Performance Metrics",
           presenter: "Rob Wormald",
-          duration: 2,
+          duration: 4,
           level: "Advanced",
           abstract: `Angular 4 Performance is hot. In this session, we'll see 
           how Angular gets such great performance by preloading data on 
