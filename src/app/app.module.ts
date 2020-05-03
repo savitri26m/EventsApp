@@ -11,6 +11,7 @@ import { CreateEventComponent } from './events/create-event/create-event.compone
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateSessionComponent } from './events/create-session/create-session.component';
+import { SessionListComponent } from './events/session-list/session-list.component';
 // import { LoginComponent } from './user/login/login.component';
 // import { ProfileComponent } from './user/profile/profile.component';
 
@@ -24,6 +25,7 @@ import { CreateSessionComponent } from './events/create-session/create-session.c
     CreateEventComponent,
     PageNotFoundComponent,
     CreateSessionComponent,
+    SessionListComponent,
     // LoginComponent,
     // ProfileComponent
   ],

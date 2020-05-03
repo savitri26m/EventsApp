@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { EventsListService } from '../../events-list.service';
-import { IEvent } from 'src/app/shared/event.model';
+import { IEvent, ISessions } from 'src/app/shared/event.model';
 
 @Component({
   selector: 'app-event-details',
@@ -12,6 +12,7 @@ import { IEvent } from 'src/app/shared/event.model';
 export class EventDetailsComponent implements OnInit {
 
   event: IEvent;
+  ifSession: boolean;
 
   constructor(private eventService: EventsListService,
           private route: ActivatedRoute) { }
@@ -19,6 +20,24 @@ export class EventDetailsComponent implements OnInit {
   ngOnInit(): void {
     const id  =  +this.route.snapshot.params['id'];
     this.event = this.eventService.getEvent(id);
+  }
+
+  addSession(){
+    this.ifSession = true;
+  }
+
+  addNewSession(sessionData: ISessions){
+    // getting the last session id of the sessions in an event
+    const nextId = Math.max.apply(null, this.event.sessions.map(s => s.id));
+    sessionData.id = nextId; // adding session id to new created session
+    this.event.sessions.push(sessionData); // adding newly created session 
+    this.eventService.updateEvent(this.event) //updating event on which session is added
+    this.ifSession = false // after saving showing the sessionsList
+  }
+
+  // on cancelling session displaying the sessions list 
+  cancelAddSession(){
+    this.ifSession = false; 
   }
 
 }

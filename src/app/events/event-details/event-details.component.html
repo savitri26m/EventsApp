@@ -21,4 +21,20 @@
             </address>
         </div>
     </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-md-2">
+            <h3>Sessions</h3>
+        </div>
+        <div class="col-md-2 pull-right">
+            <button class="btn btn-warning" type="button" (click)="addSession()" >Create Session </button>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-10">
+        <app-create-session (saveNewSession)="addNewSession($event)" (oncancelSession)="cancelAddSession()" *ngIf="ifSession"></app-create-session>
+        <app-session-list *ngIf="!ifSession" [sessions]="event?.sessions" ></app-session-list>
+    </div>
+    
 </div>

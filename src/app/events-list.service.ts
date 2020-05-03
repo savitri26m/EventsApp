@@ -336,9 +336,15 @@ export class EventsListService {
     return this.eventsList.find(e => e.id === id)
   }
 
-  saveEventData(eventData){
+  saveEventData(eventData: IEvent){
     eventData.id = 999
     eventData.sessions= []
     this.eventsList.push(eventData)
+  }
+
+  // Updating Event After adding new session 
+  updateEvent(event: IEvent){
+    let index = this.eventsList.findIndex(x => x.id = event.id);
+    this.eventsList[index] = event;
   }
 }

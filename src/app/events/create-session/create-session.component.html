@@ -15,32 +15,64 @@
       </div>
       <div class="form-group">
         <label for="eventDate">Presenter:</label>
-        <input id="presenter" formControlName="presenter" type="text" class="form-control" placeholder="presenter..." />
+        <input id="presenter" formControlName="presenter"
+        [ngClass]="{'is-invalid': (sessionForm.get('presenter').touched || sessionForm.get('presenter').dirty )
+        && sessionForm.get('presenter').invalid}"
+        type="text" class="form-control" placeholder="presenter..." />
+        <span class="invalid-feedback">
+          <span *ngIf="sessionForm.get('presenter').errors?.required">
+            Please enter presenter name.
+          </span>
+          <span *ngIf="sessionForm.get('presenter').errors?.restrictedWords">
+            The first name must be longer than 3 characters.
+          </span>
+        </span>
       </div>
       <div class="form-group">
         <label for="duration">Duration:</label>
-        <select class="form-control" formControlName="duration" >
+        <select class="form-control"
+        [ngClass]="{'is-invalid': (sessionForm.get('duration').touched || sessionForm.get('duration').dirty )
+        && sessionForm.get('duration').invalid}"
+        formControlName="duration" >
           <option value="">select duration...</option>
           <option value="1">Half Hour</option>
           <option value="2">1 Hour</option>
           <option value="3">Half Day</option>
           <option value="4">Full Day</option>
         </select>
+        <span class="invalid-feedback" *ngIf="sessionForm.get('duration').errors?.required">
+          Please select duration
+        </span>
+
       </div>
       <div class="form-group">
         <label for="level">Level:</label>
-        <select class="form-control" formControlName="level" >
+        <select class="form-control" 
+        [ngClass]="{'is-invalid': (sessionForm.get('level').touched || sessionForm.get('level').dirty )
+        && sessionForm.get('level').invalid}"
+        formControlName="level" >
           <option value="">select level...</option>
           <option value="Beginner">Beginner</option>
           <option value="Intermediate">Intermediate</option>
           <option value="Advanced">Advanced</option>
         </select>
+        <span class="invalid-feedback" *ngIf="sessionForm.get('level').errors?.required">
+          Please specify the level
+        </span>
       </div>
       <div class="form-group">
         <label for="abstract">Abstract:</label>
-        <textarea id="abstract" rows=3 formControlName="abstract" class="form-control" placeholder="abstract..."></textarea>
+        <textarea id="abstract" rows=3 class="form-control"
+        formControlName="abstract"
+        [ngClass]="{'is-invalid': (sessionForm.get('abstract').touched || sessionForm.get('abstract').dirty) &&
+          sessionForm.get('abstract').invalid }"
+        placeholder="abstract..."></textarea>
+        <span class="invalid-feedback">
+          <span *ngIf="sessionForm.get('abstract').errors?.required" >Required field</span>
+          <span *ngIf="sessionForm.get('abstract').errors?.maxlength"> Max length is 50</span>
+        </span>
       </div>
       <button type="submit" class="btn btn-primary">Save</button>
-      <button type="button" class="btn btn-default">Cancel</button>
+      <button type="button" class="btn btn-default" (click)="cancelSession()" >Cancel</button>
     </form>
   </div>
