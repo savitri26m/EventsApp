@@ -3,7 +3,7 @@
         <div class="card bg-light">
             <app-collapsable-well>
                 <div class="sessionTitle" >
-                    {{session.name}}
+                    {{session.name}} | (votes: {{session.voters.length}})
                     <span *ngIf="session.voters.length > 3" style="color: red;" >(Recommended)</span>
                 </div>
                 <div class="sessionBody">
