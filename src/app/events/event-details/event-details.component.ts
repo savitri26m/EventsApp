@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { EventsListService } from '../../events-list.service';
 import { IEvent, ISessions } from 'src/app/shared/event.model';
 
@@ -22,8 +22,26 @@ export class EventDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const id  =  +this.route.snapshot.params['id'];
-    this.event = this.eventService.getEvent(id);
+    // this.event = this.eventService.getEvent(id);
+    console.log("type of: ", typeof id, id);
+
+    this.route.params.forEach(
+      (data: Params) => {
+        this.event = this.eventService.getEvent(+data['id']);
+        console.log(data);
+        this.ifSession = false;
+      }
+    )
   }
+
+    // const id = +this._aRoute.snapshot.params['id'];
+    // console.log("type of: ", typeof id);
+    // this.server = this.serversService.getServer(2);
+    // this._aRoute.params.subscribe(
+    //   (data: Params) => {
+    //     this.server = this.serversService.getServer(+data['id']);
+    //   }
+    // )
 
   addSession(){
     this.ifSession = true;

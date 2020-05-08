@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../shared/auth-service.service';
+import { ISessions } from '../shared/event.model';
+import { EventsListService } from '../events-list.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +10,21 @@ import { AuthServiceService } from '../shared/auth-service.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public auth: AuthServiceService) { }
+  searchTerm: string= "";
+  foundSession: ISessions[];
+ 
 
-  ngOnInit(): void {
-  }
+  constructor(public auth: AuthServiceService, 
+      public eventService: EventsListService) { }
+
+  ngOnInit(): void {}
+
+  searchSession(searchedTerm: string){
+    this.eventService.searchSessions(searchedTerm).subscribe(
+      sessionData => { 
+        this.foundSession = sessionData;
+        // console.log(this.foundSession);
+      }
+    )}
 
 }

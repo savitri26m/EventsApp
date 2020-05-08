@@ -14,8 +14,10 @@ import { CreateSessionComponent } from './events/create-session/create-session.c
 import { SessionListComponent } from './events/session-list/session-list.component';
 import { CollapsableWellComponent } from './events/collapsable-well/collapsable-well.component';
 import { DurationPipe } from './shared/duration.pipe';
-// import { LoginComponent } from './user/login/login.component';
-// import { ProfileComponent } from './user/profile/profile.component';
+import { SimpleModalComponent } from './common/simple-modal/simple-modal.component';
+import { ModalTriggerDirective } from './common/modal-trigger.directive';
+
+declare var $: any;
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { DurationPipe } from './shared/duration.pipe';
     SessionListComponent,
     CollapsableWellComponent,
     DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective,
     // LoginComponent,
     // ProfileComponent
   ],
