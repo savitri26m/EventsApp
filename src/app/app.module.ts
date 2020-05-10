@@ -16,6 +16,8 @@ import { CollapsableWellComponent } from './events/collapsable-well/collapsable-
 import { DurationPipe } from './shared/duration.pipe';
 import { SimpleModalComponent } from './common/simple-modal/simple-modal.component';
 import { ModalTriggerDirective } from './common/modal-trigger.directive';
+import { DemoJsComponent } from './simply-JS/demo-js/demo-js.component';
+import { UpvoteComponent } from './shared/upvote/upvote.component';
 
 declare var $: any;
 
@@ -34,6 +36,8 @@ declare var $: any;
     DurationPipe,
     SimpleModalComponent,
     ModalTriggerDirective,
+    DemoJsComponent,
+    UpvoteComponent,
     // LoginComponent,
     // ProfileComponent
   ],

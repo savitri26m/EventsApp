@@ -1,0 +1,11 @@
+<div class="votingWidgetContainer pointable" (click)="onClick()" >
+    <div class="card votingWidget">
+        <div class="votingButton">
+            <i *ngIf="voted">Voted</i>
+            <i *ngIf="!voted">Vote</i>
+        </div>
+        <div class="badge bagde-inverse votingCount">
+            {{count}}
+        </div>
+    </div>
+</div>

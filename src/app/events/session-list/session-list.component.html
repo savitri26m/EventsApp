@@ -1,4 +1,8 @@
 <div class="row" style="margin-bottom: 15px; cursor: pointer;" *ngFor="let session of visibleSessions">
+    <div class="col-md-2" *ngIf="auth.isAuthenticated()">
+        <app-upvote (vote)="toggleVote(session)" [count]="session.voters.length" 
+        [voted]="userhasVoted(session)" ></app-upvote>
+    </div>
     <div class="col-md-10">
         <div class="card bg-light">
             <app-collapsable-well>

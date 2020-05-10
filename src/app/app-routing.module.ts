@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { EventRouteActivateService } from './shared/event-route-activate.service';
 import { EventListResolverService } from './shared/event-list-resolver.service';
 import { CreateSessionComponent } from './events/create-session/create-session.component';
+import { DemoJsComponent } from './simply-JS/demo-js/demo-js.component';
 
 
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'events/:id', component: EventDetailsComponent, canActivate: [EventRouteActivateService]},
   {path: '', redirectTo: '/events', pathMatch: 'full'},
   {path: 'events/sessions/new', component: CreateSessionComponent},
+  {path: 'jsdemo', component: DemoJsComponent},
 
   // lazy loading User module (profile component)
   {path: 'user', loadChildren: ()=> import('./user/user/user.module').then(mod => mod.UserModule)},
