@@ -23,9 +23,10 @@
       <input [(ngModel)]="event.price" name="price" required id="eventPrice" type="text" type="number" class="form-control" placeholder="event price..." />
     </div>
     
-    <div ngModelGroup="location" >
+    <div ngModelGroup="location" appLocationValidator #locationGroup="ngModelGroup" >
         <div class="form-group">
         <label for="address">Event Location:</label>
+        <span *ngIf="locationGroup.invalid && locationGroup.touched" >You must either mention full address or OnlineUrl</span>
         <input [(ngModel)]="event.location.address" name="address" id="address" type="text" class="form-control" placeholder="Address of event..." />
         </div>
         <div class="row">
@@ -40,8 +41,12 @@
 
     <div class="form-group">
       <label for="onlineUrl">Online Url:</label>
-      <input [(ngModel)]="event.onlineUrl" name="onlineUrl" id="onlineUrl" type="text" class="form-control" placeholder="Online Url..." />
+      <input [(ngModel)]="event.onlineUrl" name="onlineUrl" id="onlineUrl" 
+      (change)="locationGroup.control.controls.address.updateValueAndValidity()"
+      type="text" class="form-control" placeholder="Online Url..." />
     </div>
+    <!-- when the value of this input box changes,and if we go back and break validation for address group, we are revalidating the group by using updateValueAndValidity() to check the validity of the addressGroup-->
+
     <div class="form-group" [ngClass]="{'error': newEventForm.controls.imageUrl?.invalid && newEventForm.controls.imageUrl?.touched}">
       <label for="imageUrl">Image:</label>
       <em *ngIf="newEventForm.controls.imageUrl?.invalid && newEventForm.controls.imageUrl?.touched && newEventForm.controls.imageUrl?.errors.required">Required</em>
@@ -50,7 +55,7 @@
       <img [src]="event.imageUrl.value" *ngIf="newEventForm.controls.imageUrl?.invalid" />
     </div>
     
-    <button type="submit" class="btn btn-primary">Save</button>
-    <button type="button" [disabled]="newEventForm.invalid" class="btn btn-default" (click)="cancel()">Cancel</button>
+    <button type="submit" [disabled]="newEventForm.invalid" class="btn btn-default" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-danger ml-1" (click)="cancel()">Cancel</button>
   </form>
 </div>

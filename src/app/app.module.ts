@@ -18,6 +18,7 @@ import { SimpleModalComponent } from './common/simple-modal/simple-modal.compone
 import { ModalTriggerDirective } from './common/modal-trigger.directive';
 import { DemoJsComponent } from './simply-JS/demo-js/demo-js.component';
 import { UpvoteComponent } from './shared/upvote/upvote.component';
+import { LocationValidatorDirective } from './shared/location-validator.directive';
 
 declare var $: any;
 
@@ -38,6 +39,7 @@ declare var $: any;
     ModalTriggerDirective,
     DemoJsComponent,
     UpvoteComponent,
+    LocationValidatorDirective,
     // LoginComponent,
     // ProfileComponent
   ],
