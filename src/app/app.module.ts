@@ -19,6 +19,7 @@ import { ModalTriggerDirective } from './common/modal-trigger.directive';
 import { DemoJsComponent } from './simply-JS/demo-js/demo-js.component';
 import { UpvoteComponent } from './shared/upvote/upvote.component';
 import { LocationValidatorDirective } from './shared/location-validator.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 declare var $: any;
 
@@ -47,7 +48,8 @@ declare var $: any;
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
