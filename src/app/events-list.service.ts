@@ -1,13 +1,15 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { IEvent, ISessions } from './shared/event.model';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsListService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
    eventsList: IEvent[] = [
     {
@@ -320,16 +322,26 @@ export class EventsListService {
     }
   ]
 
-  getEventList(): Observable<IEvent[]>{
+  getEventList(): Observable<IEvent[]> {
     // using resolver to pre-load data 
-    let subject = new Subject<IEvent[]>(); // subject is type of observable
-    setTimeout( () => {
-      subject.next(this.eventsList); // adding eventlist data to the observable
-      subject.complete();
-    },1000) // using setTimeout to create asyn 
-
-    return subject  // returning observable instead of returning data directly
+    // let subject = new Subject<IEvent[]>(); // subject is type of observable
+    // setTimeout( () => {
+    //   subject.next(this.eventsList); // adding eventlist data to the observable
+    //   subject.complete();
+    // },1000) 
+    // using setTimeout to create asyn 
+    // return subject  
+    // returning observable instead of returning data directly
     // return this.eventsList;
+    return this.http.get<IEvent[]>('api/events').pipe(
+      catchError(this.handleError<IEvent[]>('getEventList', [])))
+  }
+
+  private handleError<T>(operation = 'operation', result?: T){
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T)
+    }
   }
 
   getEvent(id: number): IEvent {

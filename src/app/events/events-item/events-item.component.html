@@ -11,13 +11,12 @@
                 <span *ngSwitchDefault >(Normal Start)</span>    
             </div>
             <div class="card-text"> Price: {{eventItem.price | currency }} </div>
-            <div class="card-text"> Location: {{eventItem.location.address}} 
-                <span>&nbsp;</span> <span>{{eventItem.location.city}}, {{eventItem.location.country}}</span>    
+            <div class="card-text"> Location: {{eventItem?.location?.address}} 
+                <span>&nbsp;</span> <span>{{eventItem?.location?.city}}, {{eventItem?.location?.country}}</span>    
             </div>
         </div>
     </div>
 </a>
-
 
 
 
