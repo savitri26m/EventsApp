@@ -27,9 +27,13 @@ export class EventDetailsComponent implements OnInit {
 
     this.route.params.forEach(
       (data: Params) => {
-        this.event = this.eventService.getEvent(+data['id']);
+        this.eventService.getEvent(+data['id']).subscribe(
+          (eventData: IEvent) => {
+            this.event = eventData
+            this.ifSession = false;
+          }
+        )
         console.log(data);
-        this.ifSession = false;
       }
     )
   }

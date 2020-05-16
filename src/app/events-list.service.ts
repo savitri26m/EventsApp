@@ -321,6 +321,7 @@ export class EventsListService {
       ]
     }
   ]
+// Usinf HTTP calls
 
   getEventList(): Observable<IEvent[]> {
     // using resolver to pre-load data 
@@ -336,6 +337,13 @@ export class EventsListService {
     return this.http.get<IEvent[]>('api/events').pipe(
       catchError(this.handleError<IEvent[]>('getEventList', [])))
   }
+  
+  getEvent(id: number): Observable<IEvent> {
+    // return this.eventsList.find(e => e.id === id)
+    return this.http.get<IEvent>('/api/events/' + id).pipe(
+      catchError(this.handleError<IEvent>('getEventList'))
+    )
+  }
 
   private handleError<T>(operation = 'operation', result?: T){
     return (error: any): Observable<T> => {
@@ -344,9 +352,6 @@ export class EventsListService {
     }
   }
 
-  getEvent(id: number): IEvent {
-    return this.eventsList.find(e => e.id === id)
-  }
 
   saveEventData(eventData: IEvent){
     eventData.id = 999
