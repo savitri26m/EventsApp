@@ -25,14 +25,22 @@ export class EventDetailsComponent implements OnInit {
     // this.event = this.eventService.getEvent(id);
     console.log("type of: ", typeof id, id);
 
-    this.route.params.forEach(
-      (data: Params) => {
-        this.eventService.getEvent(+data['id']).subscribe(
-          (eventData: IEvent) => {
-            this.event = eventData
-            this.ifSession = false;
-          }
-        )
+    // this.route.params.forEach(
+    //   (data: Params) => {
+    //     this.eventService.getEvent(+data['id']).subscribe(
+    //       (eventData: IEvent) => {
+    //         this.event = eventData
+    //         this.ifSession = false;
+    //       }
+    //     )
+    //     console.log(data);
+    //   }
+    // )
+
+
+    this.route.data.forEach((data) => {
+        this.event = data['event'] // same name as the one passed to resolve param in app-routing file
+        this.ifSession = false;        
         console.log(data);
       }
     )
