@@ -36,7 +36,7 @@ export class CreateEventComponent implements OnInit {
 
   saveEvent(formValues: IEvent){
     // console.log(formValues)
-    this.eventService.saveEventData(formValues);
+    this.eventService.saveEventData(formValues).subscribe();
     this.isDirty = false;
     this.router.navigate(["/events"]);
     

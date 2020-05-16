@@ -61,7 +61,16 @@ export class SessionListComponent implements OnInit, OnChanges {
   }
 
   sortByVotesDesc(s1: ISessions, s2: ISessions) {
-    return s2.voters.length - s1.voters.length;
+    return s2.voters?.length - s1.voters?.length;
+  }
+
+  countArray(session: ISessions){
+    if(session.voters?.length > 0){
+      return session.voters?.length
+    }
+    else{
+      return 0
+    }
   }
 
 }

@@ -51,7 +51,8 @@ export class CreateSessionComponent implements OnInit {
       duration: +sessionValues.duration,
       level: sessionValues.level,
       abstract: sessionValues.abstract,
-      name: sessionValues.name
+      name: sessionValues.name,
+      voters: []
     }
     console.log(this.session);
     this.saveNewSession.emit(this.session);

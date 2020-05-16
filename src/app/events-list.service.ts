@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IEvent, ISessions } from './shared/event.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -352,18 +352,21 @@ export class EventsListService {
     }
   }
 
-
+// update and create method are done using this function, bcoz we are passing same URL and id
   saveEventData(eventData: IEvent){
-    eventData.id = 999
-    eventData.sessions= []
-    this.eventsList.push(eventData)
+    const options = { headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+    }) };
+    return this.http.post<IEvent>('/api/events',eventData, options).pipe(
+      catchError(this.handleError<IEvent>('saveEvent'))
+    )
   }
 
   // Updating Event After adding new session 
-  updateEvent(event: IEvent){
-    let index = this.eventsList.findIndex(x => x.id = event.id);
-    this.eventsList[index] = event;
-  }
+  // updateEvent(event: IEvent){
+  //   let index = this.eventsList.findIndex(x => x.id = event.id);
+  //   this.eventsList[index] = event;
+  // }
 
   searchSessions(searchTerm: string) {
     var term = searchTerm.toLocaleLowerCase();

@@ -28,7 +28,7 @@ export class UpvoteComponent implements OnInit {
   }
 
   onClick(){
-    this.vote.emit();
+    this.vote.emit({});
   }
 
 }

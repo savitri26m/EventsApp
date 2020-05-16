@@ -1,14 +1,16 @@
 <div class="row" style="margin-bottom: 15px; cursor: pointer;" *ngFor="let session of visibleSessions">
     <div class="col-md-2" *ngIf="auth.isAuthenticated()">
-        <app-upvote (vote)="toggleVote(session)" [count]="session.voters.length" 
-        [voted]="userhasVoted(session)" ></app-upvote>
+        <app-upvote (vote)="toggleVote(session)" [count]="countArray(session)"
+             [voted]="userhasVoted(session)">
+        </app-upvote>
     </div>
+
     <div class="col-md-10">
         <div class="card bg-light">
             <app-collapsable-well>
-                <div class="sessionTitle" >
-                    {{session.name}} | <small>(votes: {{session.voters.length}})</small>
-                    <span *ngIf="session.voters.length > 3" style="color: red;" >(Recommended)</span>
+                <div class="sessionTitle">
+                    {{session.name}} | <small>(votes: {{session?.voters?.length > 0 ? session?.voters?.length : 0 }})</small>
+                    <span *ngIf="session?.voters?.length > 3" style="color: red;">(Recommended)</span>
                 </div>
                 <div class="sessionBody">
                     <h6>{{session.presenter}}</h6>
@@ -19,6 +21,7 @@
             </app-collapsable-well>
         </div>
     </div>
+
 </div>
 
 
