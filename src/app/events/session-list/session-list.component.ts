@@ -13,6 +13,7 @@ export class SessionListComponent implements OnInit, OnChanges {
   @Input() sessions: ISessions[];
   @Input() filterBySession: string;
   @Input() sortByValue: string;
+  @Input() eventId: number; //comming from event-details html
  
   visibleSessions: ISessions[] = [];
 
@@ -43,10 +44,10 @@ export class SessionListComponent implements OnInit, OnChanges {
   // vote functionality
   toggleVote(session: ISessions){
     if(this.userhasVoted(session)){
-      this.voterService.deleteVoter(session, this.auth.currentUser.username)
+      this.voterService.deleteVoter(this.eventId ,session, this.auth.currentUser.username)
     }
     else{
-      this.voterService.addVoter(session, this.auth.currentUser.username)
+      this.voterService.addVoter(this.eventId, session, this.auth.currentUser.username)
     }
   }
 

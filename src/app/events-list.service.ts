@@ -324,16 +324,6 @@ export class EventsListService {
 // Usinf HTTP calls
 
   getEventList(): Observable<IEvent[]> {
-    // using resolver to pre-load data 
-    // let subject = new Subject<IEvent[]>(); // subject is type of observable
-    // setTimeout( () => {
-    //   subject.next(this.eventsList); // adding eventlist data to the observable
-    //   subject.complete();
-    // },1000) 
-    // using setTimeout to create asyn 
-    // return subject  
-    // returning observable instead of returning data directly
-    // return this.eventsList;
     return this.http.get<IEvent[]>('api/events').pipe(
       catchError(this.handleError<IEvent[]>('getEventList', [])))
   }
@@ -362,31 +352,54 @@ export class EventsListService {
     )
   }
 
+  searchSessions(searchTerm: string): Observable<ISessions[]> {
+    return this.http.get<ISessions[]>('/api/sessions/search?search=' + searchTerm).pipe(
+      catchError(this.handleError<ISessions[]>('searchSessions'))
+    )
+}
+}
+
+// old search session with out using Http calls
+// searchSessions(searchTerm: string) {
+//   var term = searchTerm.toLocaleLowerCase();
+//   var result: ISessions[] = [];
+
+//   this.eventsList.forEach(data => {
+//     var matchingSession =  data.sessions.filter(
+//       session => session.name.toLocaleLowerCase().indexOf(term) > -1);
+//       matchingSession = matchingSession.map(
+//         (s: any) => {
+//           s.eventId = data.id;
+//           return s;
+//         })
+//     result = result.concat(matchingSession)
+//   })
+
+//   var emitter = new EventEmitter(true);
+//   setTimeout(() => {
+//     emitter.emit(result);
+//   }, 1000);
+//   return emitter;
+// }
+
+
+
   // Updating Event After adding new session 
   // updateEvent(event: IEvent){
   //   let index = this.eventsList.findIndex(x => x.id = event.id);
   //   this.eventsList[index] = event;
   // }
 
-  searchSessions(searchTerm: string) {
-    var term = searchTerm.toLocaleLowerCase();
-    var result: ISessions[] = [];
 
-    this.eventsList.forEach(data => {
-      var matchingSession =  data.sessions.filter(
-        session => session.name.toLocaleLowerCase().indexOf(term) > -1);
-        matchingSession = matchingSession.map(
-          (s: any) => {
-            s.eventId = data.id;
-            return s;
-          })
-      result = result.concat(matchingSession)
-    })
-
-    var emitter = new EventEmitter(true);
-    setTimeout(() => {
-      emitter.emit(result);
-    }, 1000);
-    return emitter;
-  }
-}
+  // getEventList(): Observable<IEvent[]> {
+  //   // using resolver to pre-load data 
+  //   // let subject = new Subject<IEvent[]>(); // subject is type of observable
+  //   // setTimeout( () => {
+  //   //   subject.next(this.eventsList); // adding eventlist data to the observable
+  //   //   subject.complete();
+  //   // },1000) 
+  //   // using setTimeout to create asyn 
+  //   // return subject  
+  //   // returning observable instead of returning data directly
+  //   // return this.eventsList;
+  // }

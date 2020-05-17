@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
-import { ISessions, IEvent } from 'src/app/shared/event.model';
+import { ISessions } from 'src/app/shared/event.model';
 
 
 
@@ -26,6 +26,7 @@ export class CreateSessionComponent implements OnInit {
 
   @Output() saveNewSession = new EventEmitter<ISessions>();
   @Output() oncancelSession = new EventEmitter<ISessions>();
+
 
   session = new ISessions();
 
